@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login','register']]);
     }
 
     /**
@@ -46,15 +46,6 @@ class AuthController extends Controller
         return response()->json(['status' => 0, 'token' => $token]);
     }
 
-    /**
-     * User info
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function me()
-    {
-        return response()->json(auth()->user());
-    }
 
     /**
      * User logout
@@ -78,6 +69,7 @@ class AuthController extends Controller
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|confirmed|min:6',
+            'password_confirmation' => 'required|min:6|same:password',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 400);
