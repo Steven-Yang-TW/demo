@@ -20,3 +20,8 @@ Route::get('/', function () {
 Route::get('home', function () {
     return 'hello World';
 })->name('home');
+
+Route::get('tes', function () {
+    return 'test';
+})->name('test');
+
