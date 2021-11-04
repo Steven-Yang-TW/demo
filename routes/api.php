@@ -23,7 +23,7 @@ use App\Http\Controllers\AuthController;
 Route::group([
     'prefix' => 'auth'
 ], function () {
-    Route::get('/', [AuthController::class, 'me']);
     Route::post('login', [AuthController::class, 'login'])->name('login');
-    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('register', [AuthController::class, 'register'])->name('register');
 });
